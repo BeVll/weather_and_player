@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {WeatherData} from "../types/types.ts";
+import {WeatherData} from "../types/weatherTypes.ts";
 import WeatherApi from "../api/WeatherApi.ts";
 import {Button, Card, CardBody, CardFooter, CardHeader, Divider, Image, Input, Spinner} from "@nextui-org/react";
 import {FaCompressArrowsAlt, FaWind} from "react-icons/fa";
