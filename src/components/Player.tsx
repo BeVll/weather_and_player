@@ -3,21 +3,26 @@ import {Button, Slider} from "@nextui-org/react";
 import {FaPause, FaPlay, FaVolumeDown, FaVolumeMute} from "react-icons/fa";
 import {IoPlaySkipBackSharp, IoPlaySkipForward} from "react-icons/io5";
 import ReactPlayer from "react-player";
+import {useDispatch, useSelector} from "react-redux";
+import {IPlayerState, PlayerActionType} from "../types/playerTypes.ts";
 
 const Player = ({musicFile}:{musicFile:string}) => {
-    const [isPlaying, setPlaying] = useState<boolean>(false);
     const [currentTime, setCurrentTime] = useState<number>(0);
     const [duration, setDuration] = useState<number>(0);
     const [volume, setVolume] = useState<number>(0);
     const [oldVolume, setOldVolume] = useState<number>(0);
     const playerRef = useRef<ReactPlayer>();
+    const { isPlaying, track } = useSelector((store: any) => store.player as IPlayerState);
+    const dispatch = useDispatch();
 
 
     useEffect(() => {
-    }, [isPlaying]);
+    }, [isPlaying, track]);
 
     const playChange = () => {
-        !isPlaying ? setPlaying(true) : setPlaying(false);
+        dispatch({
+            type: PlayerActionType.CHANGE_PLAYING
+        });
     }
 
     const changeVolume = () => {
@@ -44,14 +49,12 @@ const Player = ({musicFile}:{musicFile:string}) => {
                     const currentTime = progress.playedSeconds;
                         setCurrentTime(currentTime);
                     }}
-                controls={true}
-                onStart={() => {
-                    setPlaying(true);
-                }}
-                url={"https://dl01.dtmp3.pw/mp3/81968.mp3"}>
+
+                controls={false}
+                url={track?.preview}>
             </ReactPlayer>
 
-            <div className={"w-full flex flex-col items-center gap-3 justify-center mt-5 bg-content2 p-4 rounded-xl"}>
+            <div className={"fixed   w-full flex flex-col items-center gap-1 justify-center bottom-0 bg-content2 p-3"}>
                 <div className={"flex justify-between w-full items-center"}>
                     <div>
 
