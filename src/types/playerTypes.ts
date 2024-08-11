@@ -1,11 +1,16 @@
 export interface IPlayerState {
     isPlaying: boolean,
-    track: Track|undefined|null
+    track: Track|undefined|null,
+    history: Track[],
+    queue: Track[]
 }
 
 export enum PlayerActionType {
     CHANGE_PLAYING = "CHANGE_PLAYING",
-    SET_TRACK = "SET_TRACK"
+    SET_TRACK = "SET_TRACK",
+    ADD_TO_QUEUE = "ADD_TO_QUEUE",
+    PREVIOUS_TRACK = "PREVIOUS_TRACK",
+    NEXT_TRACK = "NEXT_TRACK",
 }
 
 interface Artist {
