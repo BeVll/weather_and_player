@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -11,11 +11,14 @@ import {CiHome} from "react-icons/ci";
 import Router from "./utils/Router.tsx";
 import {Provider} from "react-redux";
 import {store} from "./redux/store.ts";
+import {Sidebar} from "./context/SidebarContext.tsx";
+import SongItem from "./components/SongItem.tsx";
 
 function App() {
     return (
       <Provider store={store}>
-          <Router/>
+
+              <Router/>
       </Provider>
     )
 }
